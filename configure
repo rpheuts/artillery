@@ -1,0 +1,2 @@
+export PSPDEV="/usr/local/pspdev"
+export PATH="$PATH:$PSPDEV/bin"

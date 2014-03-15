@@ -1,0 +1,35 @@
+#!/bin/bash
+echo "Cleaning PBP's"
+rm -r ../release/psp/game/*
+echo "Copying PBP's"
+cp -r Artillery ../release/psp/game/
+cp -r Artillery% ../release/psp/game/
+echo "Cleaning modules"
+rm ../release/MbShell/modules/*.prx
+echo "Cleaning bootloader"
+rm ../release/MbShell/bootloader.elf
+echo "Cleaning RTS elf"
+rm ../release/MbShell/Artillery.elf
+echo "Copying RTS elf and modules"
+cp Artillery.elf ../release/MbShell/
+cp modules/core/core.prx ../release/MbShell/modules
+cp modules/kernelmodule/kernmod.prx ../release/MbShell/modules
+cp modules/bdloader/backdoor.prx ../release/MbShell/modules/bdloader.prx
+cp bootloader/bootloader.elf ../release/MbShell/modules/
+#cp extensions/test/test.prx ../release/MbShell/extensions
+echo "Packaging into rar"
+rm /MbShell.rar
+rar a /MbShell.rar ../release/*
+echo "Sending rar to ftp..."
+ftp <<**
+open 192.168.1.1
+binary
+del MbShell.rar
+send
+/MbShell.rar
+MbShell.rar
+bye
+**
+echo \n
+echo ---------------------------------
+echo "Done, MbShell.rar @ 192.168.1.1"

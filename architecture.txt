@@ -1,0 +1,48 @@
+Needs:
+
+- STABLE...
+
+Driver (base class):
+Tick()
+
+Screen
+Controller
+FileSystem
+Audio
+WiFi
+USB
+
+---------------------------------------
+
+Console  -> Screen
+
+Graphics -> Screen
+	 -> FileSystem
+	 
+	 
+---------------------------------------
+
+Screen:
+Tick()
+Mode(Character / Graphical)
+Print(text)
+Blit(image)
+BlitAlpha(image)
+
+private:
+InitGPU()
+InitConsole();
+
+FileSystem:
+class File:
+Name
+Path
+Size
+Dates
+
+FILE Open(read / write)
+void Close()
+Create()
+Delete()
+
+

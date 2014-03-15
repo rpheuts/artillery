@@ -1,0 +1,21 @@
+#!/bin/bash
+echo "Mounting PSP..."
+mount /dev/sdb1 /mnt/psp
+#echo "Copying modules"
+#rm /mnt/psp/MbShell/modules/*.prx
+#cp Artillery.elf /mnt/psp/MbShell/
+cp src/core.prx /mnt/psp/Artillery/modules
+#cp modules/kernelmodule/kernmod.prx /mnt/psp/MbShell/modules
+#cp modules/bdloader/backdoor.prx /mnt/psp/MbShell/modules/bdloader.prx
+#cp bootloader/bootloader.elf /mnt/psp/MbShell/
+#cp extensions/test/test.prx /mnt/psp/MbShell/extensions/test.prx
+#cp extensions/test2/test2.prx /mnt/psp/MbShell/extensions/test2.prx
+cd src/bootloader
+make kxploit
+rm -r /mnt/psp/psp/game150/Arti*
+mkdir /mnt/psp/psp/game150/Artillery
+mkdir /mnt/psp/psp/game150/Artillery%
+cp bootloader/* /mnt/psp/psp/game150/Artillery
+cp bootloader%/* /mnt/psp/psp/game150/Artillery%
+umount /mnt/psp
+cd ../..
